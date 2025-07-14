@@ -15,7 +15,7 @@
         "php": "7.3.2",
         "laravel/framework": "5.6.*",
         "laravelcollective/html": "5.6.*",
-        "caffeinated/shinobi": "2.0 - 3.0"
+        "caffeinated/shinobi": "3.2"
     },
     "autoload": {
         "psr-4": {
