@@ -11,10 +11,10 @@ use Carbon\Carbon;
 use DB;
 use Shinobi;
 
-use Smarch\Watchtower\Models\User;
-use Smarch\Watchtower\Models\Role;
-use Smarch\Watchtower\Requests\UserStoreRequest;
-use Smarch\Watchtower\Requests\UserUpdateRequest;
+use Aguaralabs\Watchtower\Models\User;
+use Aguaralabs\Watchtower\Models\Role;
+use Aguaralabs\Watchtower\Requests\UserStoreRequest;
+use Aguaralabs\Watchtower\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {

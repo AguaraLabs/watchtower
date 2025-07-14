@@ -4,8 +4,8 @@ namespace Aguaralabs\Watchtower\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Smarch\Watchtower\Models\User;
-use Smarch\Watchtower\Models\Permission;
+use Aguaralabs\Watchtower\Models\User;
+use Aguaralabs\Watchtower\Models\Permission;
 
 class Role extends Model
 {

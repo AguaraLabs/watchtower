@@ -10,11 +10,11 @@ use Carbon\Carbon;
 
 use Shinobi;
 
-use Smarch\Watchtower\Models\Role;
-use Smarch\Watchtower\Models\Permission;
+use Aguaralabs\Watchtower\Models\Role;
+use Aguaralabs\Watchtower\Models\Permission;
 
-use Smarch\Watchtower\Requests\StoreRequest;
-use Smarch\Watchtower\Requests\UpdateRequest;
+use Aguaralabs\Watchtower\Requests\StoreRequest;
+use Aguaralabs\Watchtower\Requests\UpdateRequest;
 
 
 class PermissionController extends Controller
