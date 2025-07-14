@@ -1,5 +1,5 @@
 {
-    "name": "smarch/watchtower",
+    "name": "aguaralabs/watchtower",
     "type": "package",
     "description": "Front-end for the Shinboi Auth system of Users / Roles / Permissions in Laravel 5",
     "license": "MIT",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Smarch\\Watchtower\\": "src/"
+            "Aguaralabs\\Watchtower\\": "src/"
         }
     }
 }
