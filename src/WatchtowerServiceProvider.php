@@ -1,6 +1,6 @@
 <?php
 
-namespace Smarch\Watchtower;
+namespace Aguaralabs\Watchtower;
 
 use Auth;
 use Config;

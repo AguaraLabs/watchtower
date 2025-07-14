@@ -1,6 +1,6 @@
 <?php 
 
-namespace Smarch\Watchtower\Models;
+namespace Aguaralabs\Watchtower\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

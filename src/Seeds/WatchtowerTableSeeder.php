@@ -1,6 +1,6 @@
 <?php
 
-namespace Smarch\Watchtower\Seeds;
+namespace Aguaralabs\Watchtower\Seeds;
 
 use DB;
 

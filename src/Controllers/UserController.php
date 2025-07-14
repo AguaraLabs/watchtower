@@ -1,6 +1,6 @@
 <?php
 
-namespace Smarch\Watchtower\Controllers;
+namespace Aguaralabs\Watchtower\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ use Smarch\Watchtower\Requests\UserUpdateRequest;
 class UserController extends Controller
 {
 
-	protected $model = \Smarch\Watchtower\Models\User::class;
+	protected $model = \Aguaralabs\Watchtower\Models\User::class;
 
 	/**
 	 * Set resource model in constructor.

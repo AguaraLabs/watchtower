@@ -1,6 +1,6 @@
 <?php
 
-namespace Smarch\Watchtower\Controllers;
+namespace Aguaralabs\Watchtower\Controllers;
 
 use Illuminate\Http\Request;
 
