@@ -12,8 +12,8 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "laravel/framework": "5.3.*",
+        "php": "7.3.2",
+        "laravel/framework": "5.5.*",
         "laravelcollective/html": "5.3.*",
         "caffeinated/shinobi": "2.0 - 3.0"
     },
