@@ -36,7 +36,7 @@ return [
     |
     */
     'user' => [
-        'model' => \Smarch\Watchtower\Models\User::class,
+        'model' => \Aguaralabs\Watchtower\Models\User::class,
         'rules' => [
             'update' => [],
             'store'  => [],
