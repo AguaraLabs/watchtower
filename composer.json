@@ -13,8 +13,8 @@
     ],
     "require": {
         "php": "^7.3.2",
-        "laravel/framework": "5.6.*",
-        "laravelcollective/html": "5.6.*",
+        "laravel/framework": "^6.0.0",
+        "laravelcollective/html": "^6.0.0",
         "caffeinated/shinobi": "3.2"
     },
     "autoload": {
