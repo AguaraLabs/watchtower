@@ -172,7 +172,7 @@ class RoleController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to destroy roles.";
 
-		if ( Shinobi::can ( config('watchtower.acl.role.destroy', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.role.destroy') ) ) {
 			Role::destroy($id);
 			$level = "warning";
 			$message = "<i class='fa fa-check-square-o fa-1x'></i> Success! Role deleted.";
@@ -190,7 +190,7 @@ class RoleController extends Controller
 	 */
 	public function editRolePermissions($id)
 	{
-		if ( Shinobi::can( config('watchtower.acl.role.permissions', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.role.permissions', false) ) ) {
 			$role = Role::findOrFail($id);
 
 			$permissions = $role->permissions;
@@ -216,7 +216,7 @@ class RoleController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to update role permissions.";
 
-		if ( Shinobi::can ( config('watchtower.acl.role.permissions', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.role.permissions', false) ) ) {
 			$role = Role::findOrFail($id);
 			if ($request->has('slug')) {
 				$role->permissions()->sync( $request->get('slug') );
@@ -239,7 +239,7 @@ class RoleController extends Controller
 	 */
 	public function editRoleUsers($id)
 	{
-		if ( Shinobi::can( config('watchtower.acl.role.users', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.role.users', false) ) ) {
 			$role = Role::findOrFail($id);
 
 			$users = $role->users;
@@ -265,7 +265,7 @@ class RoleController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to update role users.";
 
-		if ( Shinobi::can ( config('watchtower.acl.role.users', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.role.users') ) ) {
 			$role = Role::findOrFail($id);
 			if ($request->has('slug')) {
 				$role->users()->sync( $request->get('slug') );
@@ -286,7 +286,7 @@ class RoleController extends Controller
 	 */
 	public function showRoleMatrix()
 	{
-		if ( Shinobi::can( config('watchtower.acl.role.viewmatrix', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.role.viewmatrix') ) ) {
 			$roles = Role::all();
 			$perms = Permission::all();
 			$prs = DB::table('permission_role')->select('role_id as r_id','permission_id as p_id')->get();
@@ -311,7 +311,7 @@ class RoleController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to update role permissions.";
 
-		if ( Shinobi::can ( config('watchtower.acl.role.permissions', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.role.permissions', false) ) ) {
 			$bits = $request->get('perm_role');
 			foreach($bits as $v) {
 				$p = explode(":", $v);
