@@ -18,7 +18,7 @@ class WatchtowerController extends Controller
      */
     public function index()
     {
-        if ( Shinobi::can( config('watchtower.acl.watchtower.index', false) ) ) {
+        if (Gate::allows( config('watchtower.acl.watchtower.index') ) ) {
             $links = config('watchtower.dashboard');
             return view( config('watchtower.views.layouts.dashboard') )
                     ->with('dashboard', $links)
