@@ -3,6 +3,7 @@
 namespace Aguaralabs\Watchtower\Requests;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Str;
 
 class UpdateRequest extends Request
 {
@@ -27,7 +28,7 @@ class UpdateRequest extends Request
 
         $id = ( $this->route('permission') ) ?: $this->route('role');
 
-        $tbl = $this->route()->parameterNames()[0];
+        $tbl = Str::plural( $this->route()->parameterNames()[0] );
 
         return [
             'slug' => 'required|unique:'.$tbl.',slug,'.$id.'|max:255|min:4',
