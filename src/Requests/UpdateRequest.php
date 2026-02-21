@@ -27,7 +27,7 @@ class UpdateRequest extends Request
 
         $id = ( $this->route('permission') ) ?: $this->route('role');
 
-        $tbl = str_plural( $this->route()->parameterNames()[0] );
+        $tbl = $this->route()->parameterNames()[0];
 
         return [
             'slug' => 'required|unique:'.$tbl.',slug,'.$id.'|max:255|min:4',
