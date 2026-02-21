@@ -145,12 +145,19 @@ class UserController extends Controller
         $level = "danger";
         $message = " You are not permitted to update users.";
 
+        $data = $request->validated();
+        if ($data['password'] === $data['password_confirmation']) {
+            $crypted = bcrypt($data['password'] );
+            $data['password'] = $crypted;
+            $data['password_confirmation'] = $crypted;
+        }
+
         if (Gate::allows(config('watchtower.acl.user.edit'))) {
             $user = $this->model::findOrFail($id);
             if ($request->get('password') == '') {
                 $user->update($request->except('password'));
             } else {
-                $user->update($request->all());
+                $user->update($data);
             }
             $level = "success";
             $message = "<i class='fa fa-check-square-o fa-1x'></i> Success! User edited.";
