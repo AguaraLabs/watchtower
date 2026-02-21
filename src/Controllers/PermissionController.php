@@ -6,9 +6,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Carbon\Carbon;
-
-use Shinobi;
 
 use Aguaralabs\Watchtower\Models\Role;
 use Aguaralabs\Watchtower\Models\Permission;
@@ -34,7 +33,7 @@ class PermissionController extends Controller
 	 */
 	public function index()
 	{
-		if ( Shinobi::can( config('watchtower.acl.permission.index', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.permission.index') ) ) {
 			$permissions = $this->getData();
 			
 			return view( config('watchtower.views.permissions.index'), compact('permissions') );
@@ -71,7 +70,7 @@ class PermissionController extends Controller
 	 */
 	public function create()
 	{
-		if ( Shinobi::can( config('watchtower.acl.permission.create', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.permission.create') ) ) {
 			return view( config('watchtower.views.permissions.create') )
 						->with('route', $this->route);
 		}
