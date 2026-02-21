@@ -37,7 +37,7 @@ class Role extends Model
      */
     public function permissions()
     {
-        return $this->belongsToMany('Smarch\Watchtower\Models\Permission');
+        return $this->belongsToMany('Aguaralabs\Watchtower\Models\Permission');
     }
     
 }
