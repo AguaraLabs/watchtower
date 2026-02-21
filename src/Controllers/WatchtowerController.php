@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Shinobi;
 
 use App\Http\Requests;
-use Illuminate\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 
 class WatchtowerController extends Controller
