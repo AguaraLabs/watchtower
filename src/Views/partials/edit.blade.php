@@ -42,7 +42,7 @@
     @endif
     
     @if ($show == '0')
-      @if ( Shinobi::can( config('watchtower.acl.'.$route.'.edit', false) ) ) 
+      @if ( Gate::allows( config('watchtower.acl.'.$route.'.edit') ) )
          <div class="form-group">
              <div class="col-sm-offset-3 col-sm-3">
                  {!! Form::submit('Update '.$route, ['class' => 'btn btn-primary form-control']) !!}
