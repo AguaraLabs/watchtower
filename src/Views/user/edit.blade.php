@@ -41,7 +41,7 @@
           </div>
       </div>
       
-      @if ( Shinobi::can( config('watchtower.acl.user.edit', false) ) ) 
+      @if ( Gate::allows( config('watchtower.acl.user.edit') ) )
 
        <div class="form-group">
          <div class="col-sm-offset-3 col-sm-3">

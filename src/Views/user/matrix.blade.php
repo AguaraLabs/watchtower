@@ -57,7 +57,7 @@
         </table>
     </div>
 
-    @if ( Shinobi::can( config('watchtower.acl.user.usermatrix', false)) )
+    @if (Gate::allows( config('watchtower.acl.user.usermatrix')) )
       <div class="form-group">
           <div class="col-sm-3">
               {!! Form::submit('Save User Role Changes', ['class' => 'btn btn-primary form-control']) !!}

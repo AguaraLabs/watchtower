@@ -1,7 +1,8 @@
 <?php
 
-Route::group( [ 
-		'middleware'=> config('watchtower.route.middleware'),
+Route::group( [
+        //'middleware'=> config('watchtower.route.middleware'),
+        'middleware' => ['web'],
 		'as'		=> config('watchtower.route.as')
 	  ], function () {
 

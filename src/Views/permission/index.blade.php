@@ -4,7 +4,7 @@
 
     <h1>Permissions
     <div class="btn-group pull-right" role="group" aria-label="...">    
-      @if ( Shinobi::can( config('watchtower.acl.role.viewmatrix', false) ) )
+      @if ( Gate::allows( config('watchtower.acl.role.viewmatrix') ) )
         <a href="{{ route('watchtower.role.matrix') }}">
         <button type="button" class="btn btn-default">
           <i class="fa fa-th fa-fw"></i> 
@@ -12,7 +12,7 @@
         </button></a>
       @endif
 
-      @if ( Shinobi::can( config('watchtower.acl.permission.create', false) ) )
+      @if ( Gate::allows( config('watchtower.acl.permission.create') ) )
         <a href="{{ route( config('watchtower.route.as') .'permission.create') }}">
         <button type="button" class="btn btn-info">
           <i class="fa fa-plus fa-fw"></i> 
@@ -43,7 +43,7 @@
                 </td>
                 
                 <td>
-                    @if ( Shinobi::can( config('watchtower.acl.permission.role', false)) )
+                    @if ( Gate::allows( config('watchtower.acl.permission.role')) )
                     <a href="{{ route( config('watchtower.route.as') .'permission.role.edit', $item->id) }}">
                       <button type="button" class="btn btn-primary btn-xs">
                       <i class="fa fa-users fa-fw"></i> 
@@ -51,7 +51,7 @@
                       </button></a>
                     @endif
 
-                    @if ( Shinobi::can( config('watchtower.acl.permission.edit', false)) )
+                    @if (Gate::allows( config('watchtower.acl.permission.edit')) )
                     <a href="{{ route( config('watchtower.route.as') .'permission.edit', $item->id) }}">
                       <button type="button" class="btn btn-default btn-xs">
                       <i class="fa fa-pencil fa-fw"></i> 
@@ -59,7 +59,7 @@
                       </button></a>
                     @endif
                     
-                    @if ( Shinobi::can( config('watchtower.acl.permission.destroy', false) ) )
+                    @if ( Gate::allows( config('watchtower.acl.permission.destroy') ) )
                     {!! Form::open(['method'=>'delete','route'=> [ config('watchtower.route.as') .'permission.destroy',$item->id], 'style' => 'display:inline']) !!}
                       <button type="submit" class="btn btn-danger btn-xs">
                       <i class="fa fa-trash-o fa-lg"></i> 
