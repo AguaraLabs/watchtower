@@ -14,12 +14,18 @@
     "require": {
         "php": "^7.3.2",
         "laravel/framework": "^6.0.0",
-        "laravelcollective/html": "^6.0.0",
-        "caffeinated/shinobi": "v4.2.0"
+        "laravelcollective/html": "^6.0.0"
     },
     "autoload": {
         "psr-4": {
             "Aguaralabs\\Watchtower\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aguaralabs\\Watchtower\\WatchtowerServiceProvider"
+            ]
         }
     }
 }

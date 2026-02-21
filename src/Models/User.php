@@ -34,6 +34,6 @@ class User extends Model
      */
     public function roles()
     {
-        return $this->belongsToMany('Smarch\Watchtower\Models\Role');
+        return $this->belongsToMany('Aguaralabs\Watchtower\Models\Role');
     }
 }
