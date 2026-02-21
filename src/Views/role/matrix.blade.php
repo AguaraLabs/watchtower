@@ -57,7 +57,7 @@
         </table>
     </div>
     
-    @if ( Shinobi::can( config('watchtower.acl.role.rolematrix', false) ) )
+    @if ( Gate::allows( config('watchtower.acl.role.rolematrix') ) )
       <div class="form-group">
           <div class="col-sm-3">
               {!! Form::submit('Save Role Permission Changes', ['class' => 'btn btn-primary form-control']) !!}
