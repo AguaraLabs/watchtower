@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use DB;
-use Shinobi;
+
+use Illuminate\Support\Facades\Gate;
 
 use Aguaralabs\Watchtower\Models\Role;
 use Aguaralabs\Watchtower\Models\User;
@@ -36,7 +37,7 @@ class RoleController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		if ( Shinobi::can( config('watchtower.acl.role.index', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.role.index') ) ) {
 			$roles = $this->getData();
 
 			return view( config('watchtower.views.roles.index'), compact('roles') );
@@ -73,7 +74,7 @@ class RoleController extends Controller
 	 */
 	public function create()
 	{
-		if ( Shinobi::can( config('watchtower.acl.role.create', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.role.create') ) ) {
 			return view( config('watchtower.views.roles.create') )
 				->with('route', $this->route);
 		}
@@ -91,7 +92,7 @@ class RoleController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to create roles.";
 
-		if ( Shinobi::can ( config('watchtower.acl.role.create', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.role.create') ) ) {
 			Role::create($request->all());
 			$level = "success";
 			$message = "<i class='fa fa-check-square-o fa-1x'></i> Success! Role created.";
@@ -109,7 +110,7 @@ class RoleController extends Controller
 	 */
 	public function show($id)
 	{
-		if ( Shinobi::canAtLeast( [ config('watchtower.acl.role.edit', false),  config('watchtower.acl.role.show', false)] ) ) {
+		if ( Gate::any( [ config('watchtower.acl.role.edit'),  config('watchtower.acl.role.show')] ) ) {
 			$resource = Role::findOrFail($id);
 			$show = "1";
 			$route = $this->route;
@@ -127,7 +128,7 @@ class RoleController extends Controller
 	 */
 	public function edit($id)
 	{
-		if ( Shinobi::canAtLeast( [ config('watchtower.acl.role.edit', false),  config('watchtower.acl.role.show', false)] ) ) {
+		if ( Gate::any( [ config('watchtower.acl.role.edit'),  config('watchtower.acl.role.show')] ) ) {
 			$resource = Role::findOrFail($id);
 			$show = "0";
 			$route = $this->route;
@@ -149,7 +150,7 @@ class RoleController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to update roles.";
 
-		if ( Shinobi::can ( config('watchtower.acl.role.edit', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.role.edit') ) ) {
 			$role = Role::findOrFail($id);
 			$role->update($request->all());
 			$level = "success";

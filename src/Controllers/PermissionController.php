@@ -88,7 +88,7 @@ class PermissionController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to create permissions.";
 
-		if ( Shinobi::can ( config('watchtower.acl.permission.create', false) ) ) {
+		if (Gate::allows( config('watchtower.acl.permission.create') ) ) {
 			Permission::create($request->all());
 			$level = "success";
 			$message = "<i class='fa fa-check-square-o fa-1x'></i> Success! Permission created.";
@@ -106,7 +106,7 @@ class PermissionController extends Controller
 	 */
 	public function show($id)
 	{
-		if ( Shinobi::canAtLeast( [ config('watchtower.acl.permission.edit', false),  config('watchtower.acl.permission.show', false)] ) ) {
+		if ( Gate::any( [ config('watchtower.acl.permission.edit'),  config('watchtower.acl.permission.show')] ) ) {
 			$resource = Permission::findOrFail($id);
 			$show = "1";
 			$route = $this->route;
@@ -125,7 +125,7 @@ class PermissionController extends Controller
 	 */
 	public function edit($id)
 	{
-		if ( Shinobi::canAtLeast( [ config('watchtower.acl.permission.edit', false),  config('watchtower.acl.permission.show', false)] ) ) {
+		if ( Gate::any( [ config('watchtower.acl.permission.edit'),  config('watchtower.acl.permission.show')] ) ) {
 			$resource = Permission::findOrFail($id);
 			$show = "0";
 			$route = $this->route;
@@ -147,7 +147,7 @@ class PermissionController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to update permissions.";
 
-		if ( Shinobi::can ( config('watchtower.acl.permission.edit', false) ) ) {
+		if ( Gate::allows ( config('watchtower.acl.permission.edit') ) ) {
 			$permission = Permission::findOrFail($id);
 			$permission->update($request->all());
 			$level = "success";
@@ -169,7 +169,7 @@ class PermissionController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to destroy permissions.";
 
-		if ( Shinobi::can ( config('watchtower.acl.permission.destroy', false) ) ) {
+		if ( Gate::allows( config('watchtower.acl.permission.destroy') ) ) {
 			Permission::destroy($id);
 			$level = "warning";
 			$message = "<i class='fa fa-check-square-o fa-1x'></i> Success! Permission deleted.";
@@ -187,7 +187,7 @@ class PermissionController extends Controller
 	 */
 	public function editRole($id)
 	{
- 		if ( Shinobi::can( config('watchtower.acl.permission.role', false) ) ) {
+ 		if ( Gate::allows( config('watchtower.acl.permission.role') ) ) {
 			$permission = Permission::findOrFail($id);
 
 			$roles = $permission->roles;
@@ -213,7 +213,7 @@ class PermissionController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to update permissions.";
 
-		if ( Shinobi::can ( config('watchtower.acl.permission.role', false) ) ) {
+		if (Gate::allows( config('watchtower.acl.permission.role') ) ) {
 			$permission = Permission::findOrFail($id);
 			if ($request->has('slug')) {
 				$permission->roles()->sync( $request->get('slug') );

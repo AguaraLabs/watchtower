@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::allows(config('watchtower.acl.user.index', false))) {
+        if (Gate::allows(config('watchtower.acl.user.index'))) {
             if ($request->has('search_value')) {
                 $value = $request->get('search_value');
                 $users = $this->model::where('name', 'LIKE', '%' . $value . '%')
@@ -75,7 +75,7 @@ class UserController extends Controller
         $level = "danger";
         $message = " You are not permitted to create users.";
 
-        if (Gate::allows(config('watchtower.acl.user.create', false))) {
+        if (Gate::allows(config('watchtower.acl.user.create'))) {
             $this->model::create($request->all());
             $level = "success";
             $message = "<i class='fa fa-check-square-o fa-1x'></i> Success! User created.";
@@ -92,7 +92,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (Gate::allows(config('watchtower.acl.user.create', false))) {
+        if (Gate::allows(config('watchtower.acl.user.create'))) {
             return view(config('watchtower.views.users.create'));
         }
 
@@ -108,7 +108,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        if (Shinobi::canAtLeast([config('watchtower.acl.user.show', false), config('watchtower.acl.user.edit', false)])) {
+        if (Gate::any([config('watchtower.acl.user.show'), config('watchtower.acl.user.edit')])) {
             $resource = $this->model::findOrFail($id);
             $show = "1";
             return view(config('watchtower.views.users.show'), compact('resource', 'show'));
@@ -125,7 +125,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if (Shinobi::canAtLeast([config('watchtower.acl.user.edit', false), config('watchtower.acl.user.show', false)])) {
+        if (Gate::any([config('watchtower.acl.user.edit'), config('watchtower.acl.user.show')])) {
             $resource = $this->model::findOrFail($id);
             $show = "0";
             return view(config('watchtower.views.users.edit'), compact('resource', 'show'));
@@ -145,7 +145,7 @@ class UserController extends Controller
         $level = "danger";
         $message = " You are not permitted to update users.";
 
-        if (Shinobi::can(config('watchtower.acl.user.edit', false))) {
+        if (Gate::allows(config('watchtower.acl.user.edit'))) {
             $user = $this->model::findOrFail($id);
             if ($request->get('password') == '') {
                 $user->update($request->except('password'));
@@ -171,7 +171,7 @@ class UserController extends Controller
         $level = "danger";
         $message = " You are not permitted to destroy user objects";
 
-        if (Shinobi::can(config('watchtower.acl.user.destroy', false))) {
+        if (Gate::allows(config('watchtower.acl.user.destroy'))) {
             $this->model::destroy($id);
             $level = "warning";
             $message = "<i class='fa fa-check-square-o fa-1x'></i> Success! User deleted.";
@@ -189,7 +189,7 @@ class UserController extends Controller
      */
     public function editUserRoles($id)
     {
-        if (Shinobi::can(config('watchtower.acl.user.role', false))) {
+        if (Gate::allows(config('watchtower.acl.user.role'))) {
             $user = $this->model::findOrFail($id);
 
             $roles = $user->roles;
@@ -215,7 +215,7 @@ class UserController extends Controller
         $level = "danger";
         $message = " You are not permitted to update user roles.";
 
-        if (Shinobi::can(config('watchtower.acl.user.role', false))) {
+        if (Gate::allows(config('watchtower.acl.user.role'))) {
             $user = $this->model::findOrFail($id);
             if ($request->has('ids')) {
                 $user->roles()->sync($request->get('ids'));
@@ -236,7 +236,7 @@ class UserController extends Controller
      */
     public function showUserMatrix()
     {
-        if (Shinobi::can(config('watchtower.acl.user.viewmatrix', false))) {
+        if (Gate::allows(config('watchtower.acl.user.viewmatrix'))) {
             $roles = Role::all();
             $users = $this->model::orderBy('name')->get();
             $us = DB::table('role_user')->select('role_id as r_id', 'user_id as u_id')->get();
@@ -261,7 +261,7 @@ class UserController extends Controller
         $level = "danger";
         $message = " You are not permitted to update user roles.";
 
-        if (Shinobi::can(config('watchtower.acl.user.usermatrix', false))) {
+        if (Gate::allows(config('watchtower.acl.user.usermatrix'))) {
             $bits = $request->get('role_user');
             foreach ($bits as $v) {
                 $p = explode(":", $v);
