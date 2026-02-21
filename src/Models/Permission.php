@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 use Aguaralabs\Watchtower\Models\Role;
 
+/**
+ * @method static all()
+ */
 class Permission extends Model
 {
 
@@ -28,7 +31,7 @@ class Permission extends Model
      */
     public function roles()
     {
-        return $this->belongsToMany('Smarch\Watchtower\Models\Role');
+        return $this->belongsToMany('Aguaralabs\Watchtower\Models\Role');
     }
 
 }

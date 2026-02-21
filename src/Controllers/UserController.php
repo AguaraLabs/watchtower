@@ -46,6 +46,8 @@ class UserController extends Controller
 	 */
 	public function index(Request $request)
 	{
+
+
   		if ( Shinobi::can( config('watchtower.acl.user.index', false) ) ) {
 			if ( $request->has('search_value') ) {
 				$value = $request->get('search_value');
@@ -71,7 +73,7 @@ class UserController extends Controller
 	 */
 	public function create()
 	{
-	 	if ( Shinobi::can( config('watchtower.acl.user.create', false) ) ) {
+	 	if ( auth()->user()->can( config('watchtower.acl.user.create', false) ) ) {
 			return view( config('watchtower.views.users.create') );
 	 	}
 
@@ -89,7 +91,7 @@ class UserController extends Controller
 		$level = "danger";
 		$message = " You are not permitted to create users.";
 
-		if ( Shinobi::can ( config('watchtower.acl.user.create', false) ) ) {
+		if ( auth()->user->can ( config('watchtower.acl.user.create', false) ) ) {
 			$this->model::create($request->all());
 			$level = "success";
 			$message = "<i class='fa fa-check-square-o fa-1x'></i> Success! User created.";
